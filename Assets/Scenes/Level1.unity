@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorTilemap: {fileID: 1318626563}
+  colorToPaint: {r: 1, g: 0.84449863, b: 0.23113209, a: 1}
 --- !u!1 &615633113
 GameObject:
   m_ObjectHideFlags: 0
