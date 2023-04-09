@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3c7d3386dd741f5b600db0d995f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerColor: Yellow
   floorTilemap: {fileID: 1318626563}
   colorToPaint: {r: 1, g: 0.84449863, b: 0.23113209, a: 1}
 --- !u!1 &615633113
