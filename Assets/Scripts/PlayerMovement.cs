@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public bool isMoving;
     private Vector2 lastPos;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,38 +51,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(Vector2.Distance(lastPos, transform.position)) < movementDeadzone) { isMoving = false; }
+        if (Mathf.Abs(Vector2.Distance(lastPos, transform.position)) < movementDeadzone) isMoving = false;
         else isMoving = true;
         Vector2 velocity = new(moveDirection.normalized.x * moveSpeed, moveDirection.normalized.y * moveSpeed);
-        Debug.Log(velocity.x + "  " + velocity.y);
+        //rb2D.velocity = velocity;
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
         //rb.velocity = new Vector2(moveDirection.normalized.x * moveSpeed, moveDirection.normalized.y * moveSpeed);
         lastPos = transform.position;
 
     }
 
+
     //void OnCollisionEnter2D(Collision2D collision)
     //{
-
-    //    Vector2 normal = collision.contacts[0].normal;
-
-    //    if (collision.gameObject.CompareTag("Wall"))
+    //    //Vector2 normal = collision.contacts[0].normal;
+    //    foreach (ContactPoint2D contact in collision.contacts)
     //    {
-    //        Debug.Log(normal.x + "   " + normal.y);
-    //        if ((normal.x * -1 == moveDirection.normalized.x && moveDirection.normalized.x != 0) || (normal.y * -1 == moveDirection.normalized.y && moveDirection.normalized.y != 0))
+    //        Vector2 normal = contact.normal;
+    //        if (collision.gameObject.CompareTag("Wall"))
     //        {
-    //            //Mathf.Round()
-    //            //moveDirection = new Vector2(0, 0);
-    //            //isMoving = false;
-    //            Debug.Log("<color=green>YAY</color>");
+    //            Debug.Log(normal.x + "   " + normal.y + "    x:" + collision.collider.transform.position.x + "    y:" + collision.collider.transform.position.y);
+    //            if ((normal.x * -1 == moveDirection.normalized.x && moveDirection.normalized.x != 0) || (normal.y * -1 == moveDirection.normalized.y && moveDirection.normalized.y != 0))
+    //            {
+    //                Debug.Log("<color=green>YAY</color>");
+    //            }
     //        }
     //    }
     //    //Debug.Log("Dx:" + moveDirection.normalized.x+" NX:"+ normal.x * -1 + " DY:" + moveDirection.normalized.y + " NY:"+ normal.y * -1);
-
-
-
-
-
     //}
 
 }
