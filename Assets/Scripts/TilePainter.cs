@@ -7,6 +7,11 @@ public class TilePainter : MonoBehaviour
 {
     public Tilemap floorTilemap;
 
+    private void Start()
+    {
+        floorTilemap = GameObject.Find("Floor Tilemap").GetComponent<Tilemap>();
+
+    }
     void FixedUpdate()
     {
         Vector2 myPos = transform.position;

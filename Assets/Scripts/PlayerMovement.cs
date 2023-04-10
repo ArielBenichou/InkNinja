@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementDeadzone = 0.05f;
-    Vector2 moveDirection = Vector2.zero;
-    public Rigidbody2D rb2D;
-    public float moveSpeed = 5f;
     public bool isMoving;
+    public Vector2 moveDirection = Vector2.zero;
+    public float moveSpeed = 5f;
+    [SerializeField]private float movementDeadzone = 0.05f;
+    [SerializeField] private float StickDeadzone = 0.2f;
+    private Rigidbody2D rb2D;
     private Vector2 lastPos;
+    private Vector2 tmp = Vector2.zero;
+    bool fire=false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -25,17 +28,34 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void onMove(InputAction.CallbackContext context)
+    {
+         tmp = context.ReadValue<Vector2>();
+    }
+    public void onFire(InputAction.CallbackContext context) {
+        //fire = context.ReadValue<bool>();
+        fire = context.action.triggered;
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        //float moveX = Input.GetAxis("Horizontal");
+        float moveX = tmp.x;
+        float moveY = tmp.y;
 
-        if (!isMoving && (moveX != 0 || moveY != 0))
+        //!(-StickDeadzone<moveX && moveX <StickDeadzone)
+        bool xtrue = !(-StickDeadzone < moveX && moveX < StickDeadzone);
+        bool ytrue = !(-StickDeadzone < moveY && moveY < StickDeadzone);
+        Debug.Log(xtrue + "   " + ytrue);
+
+
+        //if (!isMoving && (moveX != 0 || moveY != 0))
+        if (!isMoving && (xtrue || ytrue))
         {
             //moveDirection = (moveX != 0) ?new  Vector2(moveX, 0) : new Vector2(0,moveY);
-            if (moveX != 0)
+            if (xtrue)
             {
                 moveDirection = new Vector2(moveX, 0);
             }
@@ -46,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
             //isMoving = true;
             //transform.forward = new Vector3(0,0,1); 
         }
-        if (Input.GetButtonDown("Fire1")) { isMoving = false; moveDirection = Vector2.zero; }
+        //if (Input.GetButtonDown("Fire1")) { isMoving = false; moveDirection = Vector2.zero; }
+        if (fire) { isMoving = false; moveDirection = Vector2.zero; }
     }
 
     private void FixedUpdate()
