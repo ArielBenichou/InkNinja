@@ -7,21 +7,24 @@ public class TilePainter : MonoBehaviour
 {
     public string playerColor;
     public Tilemap floorTilemap;
-    public Color colorToPaint = Color.magenta;
+    public Color colorToPaint = Color.black;
     public PowerBar powerBar;
 
     private static Dictionary<Vector2, string> tileTracker;
 
     void Start()
     {
-        tileTracker = new(){};
-    }
-
-    private void Start()
-    {
+        tileTracker = new() { }; 
+        if (floorTilemap == null)
+        {
+        }
         floorTilemap = GameObject.Find("Floor Tilemap").GetComponent<Tilemap>();
+        powerBar = gameObject.GetComponent<Player>().powerBar;
+        colorToPaint = gameObject.GetComponent<Player>().pColor;
+
 
     }
+
     void FixedUpdate()
     {
         Vector2 myPos = transform.position;
@@ -29,7 +32,7 @@ public class TilePainter : MonoBehaviour
         myPos.x = Mathf.Floor(myPos.x);
         this.ChangeTileColor(Vector2Int.RoundToInt(myPos), colorToPaint);
 
-        if(!IsPlayerAlreadyPaintedTile(myPos))
+        if (!IsPlayerAlreadyPaintedTile(myPos))
         {
             powerBar.FillPowerBar(1);
         }
@@ -45,7 +48,7 @@ public class TilePainter : MonoBehaviour
 
     private bool IsPlayerAlreadyPaintedTile(Vector2 pos)
     {
-        if(tileTracker.ContainsKey(pos))
+        if (tileTracker.ContainsKey(pos))
         {
             return tileTracker[pos] == playerColor;
         }

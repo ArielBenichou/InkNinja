@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float StickDeadzone = 0.2f;
     private Rigidbody2D rb2D;
     private Vector2 lastPos;
-    private Vector2 tmp = Vector2.zero;
+    private Vector2 AxisInput = Vector2.zero;
     bool fire=false;
 
     // Start is called before the first frame update
@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        
+        moveSpeed = gameObject.GetComponent<Player>().pSpeed;
+
 
 
         lastPos = transform.position;
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void onMove(InputAction.CallbackContext context)
     {
-         tmp = context.ReadValue<Vector2>();
+         AxisInput = context.ReadValue<Vector2>();
     }
     public void onFire(InputAction.CallbackContext context) {
         //fire = context.ReadValue<bool>();
@@ -46,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //float moveX = Input.GetAxis("Horizontal");
-        float moveX = tmp.x;
-        float moveY = tmp.y;
+        float moveX = AxisInput.x;
+        float moveY = AxisInput.y;
 
         //!(-StickDeadzone<moveX && moveX <StickDeadzone)
         bool xtrue = !(-StickDeadzone < moveX && moveX < StickDeadzone);
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                Debug.Log(moveY);
                 moveDirection = new Vector2(0, moveY);
             }
             //isMoving = true;
