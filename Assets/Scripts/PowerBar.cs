@@ -22,8 +22,4 @@ public class PowerBar : MonoBehaviour
         }
         return false;
     }
-    void Update()
-    {
-        FillPowerBar(1);
-    }
 }

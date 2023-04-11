@@ -26,7 +26,7 @@ public class TilePainter : MonoBehaviour
 
         if(!IsPlayerAlreadyPaintedTile(myPos))
         {
-            powerBar.FillPowerBar();
+            powerBar.FillPowerBar(1);
         }
         tileTracker[myPos] = playerColor;
     }
