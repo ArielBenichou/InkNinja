@@ -1,30 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class PowerBar : MonoBehaviour
 {
-    public Slider slider;
-    public int steps = 10;
-    public void FillPowerBar(float amount = (float) 1)
+    public Image image;
+    public float steps = 10f;
+
+    public void FillPowerBar(float amount)
     {
-        amount = amount / steps; 
-        slider.value = slider.value + amount;
+        amount = amount / steps;
+        image.fillAmount = image.fillAmount + amount;
     }
 
     public bool UsePowerBar()
     {
-        if (slider.value == 1)
+        if (image.fillAmount == 1)
         {
-            slider.value = 0;
+            image.fillAmount = 0;
             return true;
         }
         return false;
-    }
-    void Start()
-    {
-        FillPowerBar(10);
     }
 }
