@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+   
     public bool isMoving;
     public Vector2 moveDirection = Vector2.zero;
     public float moveSpeed = 5f;
@@ -23,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        
+
+
         lastPos = transform.position;
         isMoving = false;
 
@@ -48,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
         //!(-StickDeadzone<moveX && moveX <StickDeadzone)
         bool xtrue = !(-StickDeadzone < moveX && moveX < StickDeadzone);
         bool ytrue = !(-StickDeadzone < moveY && moveY < StickDeadzone);
-        Debug.Log(xtrue + "   " + ytrue);
-
 
         //if (!isMoving && (moveX != 0 || moveY != 0))
         if (!isMoving && (xtrue || ytrue))
@@ -100,5 +102,15 @@ public class PlayerMovement : MonoBehaviour
     //    }
     //    //Debug.Log("Dx:" + moveDirection.normalized.x+" NX:"+ normal.x * -1 + " DY:" + moveDirection.normalized.y + " NY:"+ normal.y * -1);
     //}
+
+    //var p1 = PlayerInput.Instantiate(playerPrefab,
+    //    controlScheme: "KeyboardLeft", device: Keyboard.current);
+    //var p2 = PlayerInput.Instantiate(playerPrefab,
+    //    controlScheme: "KeyboardRight", device: Keyboard.current);
+
+
+
+
+
 
 }
