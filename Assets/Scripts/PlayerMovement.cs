@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerMovement : MonoBehaviour
 {
-   
+
     public bool isMoving;
     public Vector2 moveDirection = Vector2.zero;
+    [HideInInspector]
     public float moveSpeed = 5f;
-    [SerializeField]private float movementDeadzone = 0.05f;
+    [Tooltip("how much player has to move every frame in order to count as moving.")]
+    [SerializeField] private float movementDeadzone = 0.05f;
     [SerializeField] private float StickDeadzone = 0.2f;
     private Rigidbody2D rb2D;
     private Vector2 lastPos;
     private Vector2 AxisInput = Vector2.zero;
-    bool fire=false;
+    private bool fire = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -35,9 +38,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void onMove(InputAction.CallbackContext context)
     {
-         AxisInput = context.ReadValue<Vector2>();
+        AxisInput = context.ReadValue<Vector2>();
     }
-    public void onFire(InputAction.CallbackContext context) {
+    public void onFire(InputAction.CallbackContext context)
+    {
         //fire = context.ReadValue<bool>();
         fire = context.action.triggered;
     }
@@ -64,14 +68,13 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log(moveY);
                 moveDirection = new Vector2(0, moveY);
             }
             //isMoving = true;
             //transform.forward = new Vector3(0,0,1); 
         }
         //if (Input.GetButtonDown("Fire1")) { isMoving = false; moveDirection = Vector2.zero; }
-        if (fire) { isMoving = false; moveDirection = Vector2.zero; }
+        if (fire) { moveDirection = Vector2.zero; }
     }
 
     private void FixedUpdate()

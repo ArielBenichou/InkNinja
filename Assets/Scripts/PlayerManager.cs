@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    
     public static List<GameObject> playerList;
 
     private static List<Color> playerColors;
-
     void Start()
     {
         if (playerColors == null)
@@ -33,7 +31,13 @@ public class PlayerManager : MonoBehaviour
         playerObject.name = "Player" + playerList.Count;
 
         Player PlayerScript = playerObject.GetComponent<Player>();
-        PlayerScript.pColor = playerColors[playerList.Count];
+        PlayerScript.pColor = playerColors[playerList.Count-1];
+        //PowerBar.createPowerBar(PlayerScript.pColor);
+
+        string ClipName = "P" + (playerList.Count) + "Join";
+        FindObjectOfType<AudioManager>().Play(ClipName); ;
+
+        
     }
 
 
