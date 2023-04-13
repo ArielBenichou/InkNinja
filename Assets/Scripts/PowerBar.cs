@@ -4,22 +4,33 @@ using UnityEngine.UI;
 
 public class PowerBar : MonoBehaviour
 {
-    public Image image;
+    public Image slider;
     public float steps = 10f;
 
-    public void FillPowerBar(float amount)
+    public void FillPowerBar(float amount=1)
     {
         amount = amount / steps;
-        image.fillAmount = image.fillAmount + amount;
+        if(slider.fillAmount != 1)
+        {
+        slider.fillAmount = slider.fillAmount + amount;
+            if (slider.fillAmount == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("PowerBarFull");
+            }
+        }
     }
 
     public bool UsePowerBar()
     {
-        if (image.fillAmount == 1)
+        if (slider.fillAmount == 1)
         {
-            image.fillAmount = 0;
+            slider.fillAmount = 0;
             return true;
         }
         return false;
+    }
+    public void SetColor(Color color)
+    {
+        slider.color = color;
     }
 }
