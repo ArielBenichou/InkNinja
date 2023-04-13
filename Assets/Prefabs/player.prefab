@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2804737324481545625}
   - component: {fileID: 2804737324481545624}
   - component: {fileID: 440254639}
+  - component: {fileID: 7942456069884713006}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -107,9 +108,9 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/DualSenseGamepadHID/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2804737324481545624}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: onFire
+      - m_Target: {fileID: 7942456069884713006}
+        m_TargetAssemblyTypeName: AttackManager, Assembly-CSharp
+        m_MethodName: Onfire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pName: gray
   pColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  pSpeed: 15
+  pSpeed: 10
   powerBar: {fileID: 0}
 --- !u!50 &2804737324481545625
 Rigidbody2D:
@@ -196,6 +197,18 @@ MonoBehaviour:
   floorTilemap: {fileID: 6747187032028381581, guid: 6b509465784adc345a2a2c9cc80000d9, type: 3}
   colorToPaint: {r: 1, g: 0, b: 1, a: 1}
   powerBar: {fileID: 0}
+--- !u!114 &7942456069884713006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804737324481545627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6841c68ac50542478cd1c74e9d7a2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2804737325849870034
 GameObject:
   m_ObjectHideFlags: 0

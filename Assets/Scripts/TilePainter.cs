@@ -19,8 +19,8 @@ public class TilePainter : MonoBehaviour
         {
         }
         floorTilemap = GameObject.Find("Floor Tilemap").GetComponent<Tilemap>();
-        powerBar = gameObject.GetComponent<Player>().powerBar;
-        colorToPaint = gameObject.GetComponent<Player>().pColor;
+        powerBar = gameObject.GetComponent<PlayerStats>().powerBar;
+        colorToPaint = gameObject.GetComponent<PlayerStats>().pColor;
 
 
     }

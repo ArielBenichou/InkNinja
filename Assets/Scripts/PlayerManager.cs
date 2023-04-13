@@ -25,13 +25,13 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    public static void addPlayer(GameObject playerObject)
+    public static void addPlayer(GameObject playerGameObject)
     {
-        playerList.Add(playerObject);
-        playerObject.name = "Player" + playerList.Count;
+        playerList.Add(playerGameObject);
+        playerGameObject.name = "Player" + playerList.Count;
 
-        Player PlayerScript = playerObject.GetComponent<Player>();
-        PlayerScript.pColor = playerColors[playerList.Count-1];
+        PlayerStats PlayerStats = playerGameObject.GetComponent<PlayerStats>();
+        PlayerStats.pColor = playerColors[playerList.Count-1];
         //PlayerScript.powerBar = PowerBar.createPowerBar(PlayerScript.pColor);
 
         string ClipName = "P" + (playerList.Count) + "Join";

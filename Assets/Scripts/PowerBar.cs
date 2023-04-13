@@ -15,6 +15,7 @@ public class PowerBar : MonoBehaviour
 
     public bool UsePowerBar()
     {
+        Debug.Log(image.fillAmount);
         if (image.fillAmount == 1)
         {
             image.fillAmount = 0;
