@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private static List<Color> playerColors;
     void Start()
     {
+        
         if (playerColors == null)
         {
             playerColors = new List<Color>();
