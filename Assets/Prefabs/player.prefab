@@ -177,9 +177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   moveDirection: {x: 0, y: 0}
-  moveSpeed: 15
   movementDeadzone: 0.05
   StickDeadzone: 0.5
+  moveSpeed: 15
 --- !u!114 &440254639
 MonoBehaviour:
   m_ObjectHideFlags: 0

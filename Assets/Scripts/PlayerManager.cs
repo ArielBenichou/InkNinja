@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 
         Player PlayerScript = playerObject.GetComponent<Player>();
         PlayerScript.pColor = playerColors[playerList.Count-1];
-        //PowerBar.createPowerBar(PlayerScript.pColor);
+        //PlayerScript.powerBar = PowerBar.createPowerBar(PlayerScript.pColor);
 
         string ClipName = "P" + (playerList.Count) + "Join";
         FindObjectOfType<AudioManager>().Play(ClipName); ;

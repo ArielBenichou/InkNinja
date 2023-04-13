@@ -6,14 +6,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("debug")]
     public bool isMoving;
     public Vector2 moveDirection = Vector2.zero;
-    [HideInInspector]
-    public float moveSpeed = 5f;
+    [Space(10)]
     [Tooltip("how much player has to move every frame in order to count as moving.")]
-    [SerializeField] private float movementDeadzone = 0.05f;
-    [SerializeField] private float StickDeadzone = 0.2f;
+    [SerializeField] 
+    private float movementDeadzone = 0.05f;
+    [SerializeField]
+    private float StickDeadzone = 0.2f;
+
+    [HideInInspector] [Min(2)]
+    public float moveSpeed = 5f;
+
     private Rigidbody2D rb2D;
     private Vector2 lastPos;
     private Vector2 AxisInput = Vector2.zero;

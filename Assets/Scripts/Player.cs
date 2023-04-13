@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
         powerBar  = GameObject.Find("Powerbar").GetComponent<PowerBar>();
 
 
-
     }
 
     // Update is called once per frame
