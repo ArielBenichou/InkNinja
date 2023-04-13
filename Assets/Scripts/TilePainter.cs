@@ -5,22 +5,18 @@ using UnityEngine.Tilemaps;
 
 public class TilePainter : MonoBehaviour
 {
-    public string playerColor;
     public Tilemap floorTilemap;
-    public Color colorToPaint = Color.black;
-    public PowerBar powerBar;
-
+    Player player;
     private static Dictionary<Vector2, string> tileTracker;
 
     void Start()
     {
-        tileTracker = new() { }; 
-        if (floorTilemap == null)
+        if (tileTracker == null)
         {
+            tileTracker = new() { }; 
         }
         floorTilemap = GameObject.Find("Floor Tilemap").GetComponent<Tilemap>();
-        powerBar = gameObject.GetComponent<PlayerStats>().powerBar;
-        colorToPaint = gameObject.GetComponent<PlayerStats>().pColor;
+        player = gameObject.GetComponent<Player>();
 
 
     }
@@ -30,13 +26,14 @@ public class TilePainter : MonoBehaviour
         Vector2 myPos = transform.position;
         myPos.y = Mathf.Floor(myPos.y);
         myPos.x = Mathf.Floor(myPos.x);
-        this.ChangeTileColor(Vector2Int.RoundToInt(myPos), colorToPaint);
+        this.ChangeTileColor(Vector2Int.RoundToInt(myPos), player.pColor);
 
         if (!IsPlayerAlreadyPaintedTile(myPos))
         {
-            powerBar.FillPowerBar(1);
+            player.powerBar.FillPowerBar(1);
+            
         }
-        tileTracker[myPos] = playerColor;
+        tileTracker[myPos] = player.pName;
     }
 
     private void ChangeTileColor(Vector2Int tilePos, Color color)
@@ -50,7 +47,7 @@ public class TilePainter : MonoBehaviour
     {
         if (tileTracker.ContainsKey(pos))
         {
-            return tileTracker[pos] == playerColor;
+            return tileTracker[pos] == player.pName;
         }
 
         return false;

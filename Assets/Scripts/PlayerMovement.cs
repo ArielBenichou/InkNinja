@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lastPos=Vector2.zero;
     private Vector2 AxisInput = Vector2.zero;
     private bool fire = false;
-    private bool slashing = false;
     private Vector2 startPos= Vector2.zero;
     private PlayerStats playerStats;
     private void Awake()

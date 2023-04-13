@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         PlayerManager.addPlayer(gameObject);
-        powerBar  = GameObject.Find("Powerbar").GetComponent<PowerBar>();
+        //powerBar  = GameObject.Find("Powerbar").GetComponent<PowerBar>();
         
 
 

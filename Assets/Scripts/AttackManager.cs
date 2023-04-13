@@ -48,19 +48,24 @@ public class AttackManager : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerStats>()&& !collision.gameObject.GetComponent<PlayerStats>().slashing)
+        if (collision.gameObject.GetComponent<PlayerStats>()&& playerStats.slashing)
         {
-            //collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
-            collision.gameObject.SetActive(false);
-            destroyPlayer(collision.gameObject);
+            
+            
+            collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+
+
+            audioManager.Stop("Run",0);
+            audioManager.Play("Slash");
+            //collision.gameObject.SetActive(false);
+            //destroy(Player);
         }
     }
-
-    private void destroyPlayer(GameObject player)
+    public void ResetPlayer(Player player)
     {
-        audioManager.Stop("Run");
-        audioManager.Play("Slash");
-        //spawn blood on floor
-        Destroy(player);
+        player.GetComponent<PlayerMovement>().enabled = true;
+        player.GetComponent<Rigidbody2D>().simulated = true;
     }
+
 }
