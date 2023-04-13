@@ -10,7 +10,14 @@ public class PowerBar : MonoBehaviour
     public void FillPowerBar(float amount=1)
     {
         amount = amount / steps;
+        if(slider.fillAmount != 1)
+        {
         slider.fillAmount = slider.fillAmount + amount;
+            if (slider.fillAmount == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("PowerBarFull");
+            }
+        }
     }
 
     public bool UsePowerBar()
